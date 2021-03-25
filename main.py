@@ -4,7 +4,7 @@ Module to start our bot
 """
 
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackQueryHandler, Filters
 
 from const import API_TOKEN
 
@@ -21,5 +21,8 @@ dispatcher.add_handler(CommandHandler('start',
 
 dispatcher.add_handler(MessageHandler(Filters.text,
                                       text_msg))
+
+dispatcher.add_handler((CallbackQueryHandler(callback=inline_reply,
+                                             pattern='yes')))
 
 updater.start_polling()
